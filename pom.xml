@@ -397,15 +397,17 @@
     <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-config</artifactId>
+     <version>5.2.1.RELEASE</version>
   </dependency>
   <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
+       <version>5.2.1.RELEASE</version>
   </dependency>
   <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-crypto</artifactId>
-      <version>5.2.1.RELEASE</version> <!-- Asegúrate de usar la versión correcta para tu proyecto -->
+       <version>5.2.1.RELEASE</version>
   </dependency>
     <dependency>
       <groupId>com.github.tomakehurst</groupId>
