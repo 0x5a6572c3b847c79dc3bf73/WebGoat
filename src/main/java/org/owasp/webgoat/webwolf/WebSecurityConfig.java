@@ -46,6 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final UserService userDetailsService;
 
+  @Autowired
+  private DataSource dataSource;
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry security =
@@ -66,8 +69,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    
+    auth.jdbcAuthentication()
+        .dataSource(dataSource)
+        .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
+        .authoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?")
+        .passwordEncoder(new BCryptPasswordEncoder());
   }
 
   @Bean
